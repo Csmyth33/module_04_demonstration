@@ -4,4 +4,7 @@
 Introduction to Exception Handling and Troubleshooting
 
 ## Author
-Student Name
+Cooper Smyth
+
+# Updates
+ - Update 1 : Added exception handlling to file operations

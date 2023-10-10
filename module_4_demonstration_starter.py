@@ -8,6 +8,9 @@ Edited by: Cooper Smyth
 Date: Oct 10, 2023
 Usage: 
 """
+import logging
+
+
 data = []
 new_data = []
 
@@ -18,6 +21,12 @@ RECOMMENDED_INCREASE = 0.20
 file = None
 
 #LECTURE SECTION 1
+
+logging.basicConfig(level = logging.DEBUG, 
+                    filename = 'app.log', 
+                    filemode = 'w', 
+                    format = '%(asctime)s - %(levelname)s - %(message)s')
+
 try:
       file = open('module_4_data.txt')
       data = file.readlines()
@@ -27,9 +36,11 @@ try:
       
       print("File Closed")
 except FileNotFoundError as e:
-      print('File not found', e)
+      #print('File not found', e)
+      logging.error(e)
 except Exception as e:
-      print('General exception:', e)
+      #print('General exception:', e)
+      logging.error(e)
 finally:
       if file is not None:
             file.close()
@@ -49,11 +60,17 @@ try:
                   salary = float(items[2])
                   
                   #LECTURE SECTION 3
+                  if salary > HIGH_SALARY:
+                        logging.warning(f"{name}'s salary {salary}"
+                                        + f"is currently above the "
+                                        +f"recommended maximum of "
+                                        +f"{HIGH_SALARY}.")
                   #REQUIREMENT:  NOTE RECORDS THAT EXCEED OR WILL EXCEED HIGH_SALARY AMOUNT
                   salary *= (1 - RECOMMENDED_INCREASE)
                   new_data.append([title,name,salary])
 except Exception as e:
-      print(e)
+      #print(e)
+      logging.error(e)
 
 
 #LECTURE SECTION 4
@@ -68,7 +85,16 @@ try:
             row += '\n'
             file.write(row)
 except Exception as e:
-      print('Exception writing data', e)
+      #print('Exception writing data', e)
+      logging.error(e)
 #LECTURE SECTION 5
+logging.debug('Debug level message')
+logging.info('Info level message')
+logging.warning('warning level message')
+logging.error('Error level message')
+logging.critical('critical level message')
+
+
+
 print("End of Program")
 
