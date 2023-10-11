@@ -37,10 +37,10 @@ try:
       print("File Closed")
 except FileNotFoundError as e:
       #print('File not found', e)
-      logging.error(e)
+      logging.critical(e)
 except Exception as e:
       #print('General exception:', e)
-      logging.error(e)
+      logging.critical(e)
 finally:
       if file is not None:
             file.close()
@@ -66,11 +66,11 @@ try:
                                         +f"recommended maximum of "
                                         +f"{HIGH_SALARY}.")
                   #REQUIREMENT:  NOTE RECORDS THAT EXCEED OR WILL EXCEED HIGH_SALARY AMOUNT
-                  salary *= (1 - RECOMMENDED_INCREASE)
+                  salary *= (1 + RECOMMENDED_INCREASE)
                   new_data.append([title,name,salary])
 except Exception as e:
       #print(e)
-      logging.error(e)
+      logging.critical(e)
 
 
 #LECTURE SECTION 4
@@ -86,7 +86,7 @@ try:
             file.write(row)
 except Exception as e:
       #print('Exception writing data', e)
-      logging.error(e)
+      logging.critical(e)
 #LECTURE SECTION 5
 logging.debug('Debug level message')
 logging.info('Info level message')
